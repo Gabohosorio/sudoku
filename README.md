@@ -1,3 +1,3 @@
 # sudoku
-Create by Gaboh
-Create at 2024-01
+Created by Gaboh
+Created at 2024 Janaury 08
