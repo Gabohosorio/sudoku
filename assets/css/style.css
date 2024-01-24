@@ -1,6 +1,7 @@
 /* position: relative; z-index: 1; para traer al frente */
 * { margin: 0px; padding: 0px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 ul, ol { list-style: none; }
+.colorx { background: #dddfe1; }
 
 .clearfix { clear: both; float: none; }
 
@@ -15,9 +16,13 @@ h4 { color: #032541; font-family: 'Work Sans', sans-serif; line-height: 18px; fo
 h5 { color: #004884; font-family: 'Montserrat', sans-serif; line-height: 27px; font-size: 18px; font-weight: 600; }
 h6 { color: #032541; font-family: 'Work Sans', sans-serif; line-height: 18px; font-size: 16px; font-weight: 600; }
 h7 { color: #004884; font-family: 'Montserrat', sans-serif; line-height: 23px; font-size: 13px; font-weight: 600; }
-.txwarning { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: darkred; }
+.txwarn14 { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: darkred; }
+.txwarn12 { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; color: darkred; }
 .txtitle14 { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: #021b28; }
+.tx14s { font-size: 14px; font-weight: 300; color: #3c4043; }
 .tx16 { font-size: 16px; font-weight: 600; color: #021b28; }
+.tx16s { font-size: 16px; font-weight: 300; color: #3c4043; }
+.tx18 { font-size: 18px; font-weight: 600; color: #091636; }
 .tx300 { width: 300px; }
 .hgt35 { height: 35px; }
 .clic { cursor: pointer;  }

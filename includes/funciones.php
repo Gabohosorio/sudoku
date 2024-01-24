@@ -1,4 +1,66 @@
 <?php
+	function leerFile($Filer, $Line){
+		if(file_exists($Filer)){
+			$Line = ($Line-1) * 9;
+			$_SESSION['based'] = array();
+      $f = 0; $k=0; $tmp = ""; $ya=true;
+			$Filetxt = fopen($Filer, 'r') or die("Archivo no existe!!");
+			while(!feof($Filetxt) && $ya){
+				$tmp = fgets($Filetxt);
+				if($f>=$Line){
+					$_SESSION['based'][$k] = $tmp;
+					$k++;
+				}
+        $f++;
+				if($f>$Line+8){
+					$ya=false;
+				}
+			}
+			fclose($Filetxt);		
+		}
+		else{
+			header('Location: error.php');
+      die();
+		}
+	}
+
+	function loadLevel(){
+		$arraySudk = $_SESSION['based'];
+		echo '<pre>'; print_r($arraySudk); echo '</pre>';
+
+	}
+
+	function matriz(){
+		$Nf=9; $Nc=9; $Tx=""; $vc=0; $Col0="#cdd2d8"; $Col1="#FFF";
+		for($f=0; $f<$Nf; $f++)
+		{	$Tx .= "<div id='keysdk' class='Conthcc'>"; $vc=0;
+			for($c=0; $c<$Nc; $c++)
+			{ $Tx .= "<input type='number' class='nospin BtPointer tx18' style='width: 40px; text-align: center;' ";
+				$vl = $_SESSION['based'][$f][$vc];
+				if($vl==0)
+					$vl=null;
+				$vc += 2;
+				$Tx .="value='".$vl."' onclick='pushBt(this)' readonly>";
+			}
+			$Tx .= "</div>";
+		}
+		echo $Tx;
+	}
+
+	function matrizt(){
+		$Nf=3; $Nc=3; $Vl=1; $Tx=""; $Color="#000";
+		for($f=0; $f<$Nf; $f++){
+			$Tx .= "<div class='Conthcc txtitle14'>";
+			for($c=0; $c<$Nc; $c++){
+				$Tx .= "<p id='key".$Vl."' class='Btk' style='width: 40px; margin-right: 5px; margin-bottom: 5px; ";
+				$Tx .= "text-align: center;' onclick='selbutton(this)'>".$Vl."</p>";
+				$Vl++;
+			}
+			$Tx .= "</div>";
+		}
+		echo $Tx;
+	}
+
 	function checkMail($email){ //Validar correcta sintaxis de un email
 		$valid = false;
 		if(!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -27,55 +89,6 @@
 				return $i;
 		}
 		return $i;
-	}
-
-	function leerFile($Filer){ //$Filer es el nombre del archivo. Ejplo 'types.txt'
-		if(file_exists($Filer)){
-			$Filetxt = fopen($Filer, 'r') or die("Archivo no existe!!");
-			while(!feof($Filetxt)){
-				$Content = fgets($Filetxt);
-				echo '<p>'.$Content.'</p>';
-			}
-			fclose($Filetxt);		
-		}
-		else{
-			echo '<p>El archivo: '.$Filer.' No existe!!</p>';
-		}
-	}
-
-	function matriz(){
-		$Nf=9; $Nc=9; $Tx=""; $Col0="#FFF"; $Col1="#ECEDEE";
-		for($f=0; $f<$Nf; $f++)
-		{	$Tx .= "<div class='Conthcc'>";
-			for($c=0; $c<$Nc; $c++)
-			{ $Tx .= "<input type='number' class='nospin BtPointer' style='width: 40px; text-align: center; ";
-				$Tx .= "font-size: 16px; font-weight: 600; color: #021b28; background: ";
-				if((($f<3 || $f>5) && ($c<3 || $c>5)) || (($f>2 && $f<6) && ($c>2 && $c<6))){
-					$Tx .= $Col1;
-				}
-				else{
-					$Tx .= $Col0;
-				}
-				$Tx .="' onclick='pushBt(this)' readonly>";
-			}
-			$Tx .= "</div>";
-		}
-		echo $Tx;
-	}
-
-	function matrizt(){
-		$Nf=3; $Nc=3; $Vl=1; $Tx=""; $Color="#000";
-		for($f=0; $f<$Nf; $f++){
-			$Tx .= "<div class='Conthcc txtitle14'>";
-			for($c=0; $c<$Nc; $c++){
-				$link = "selbutton(".$Vl.")";
-				$Tx .= "<p id='key".$Vl."' class='Btk' style='width: 40px; margin-right: 5px; margin-bottom: 5px; ";
-				$Tx .= "text-align: center;' onclick=".$link.">".$Vl."</p>";
-				$Vl++;
-			}
-			$Tx .= "</div>";
-		}
-		echo $Tx;
 	}
 
 	class Cuadro{
